@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>页面布局</title>
+		<style type="text/css">
+			*{
+				padding: 0;
+				margin: 0;
+			}
+			#box{
+				width: 900px;
+				height: 100px;
+				/* background-color: red; */
+				margin: 0 auto;
+			}
+			#logo1{
+				height: 100px;
+				background-color: yellow;
+			}
+			#nav{
+				height: 26px;
+				background-color: red;
+			}
+			#main{
+				height: 600px;
+			}
+			#leftMain{
+				display: inline-block;/*块元素上下排列，不能左右排列，通过inline-block使横向排列，且可以设置宽高*/
+				width: 450px;
+				height: 600px;
+				background-color: pink;
+			}
+			#rightMain{
+				display: inline-block;
+				width: 450px;
+				height: 600px;
+				float: right;/*浮动？*/
+				background-color: blue;
+			}
+			#footer{
+				height: 50px;
+				background-color: aqua;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box">
+			<!-- logo1部分 -->
+			<div id="logo1">
+
+			</div>
+			<!-- nav导航 -->
+			<div id="nav">
+
+			</div>
+			<!-- 广告 -->
+			<div id="ads">
+
+			</div>
+			<!-- 主题 -->
+			<div id="main">
+				<!-- 左部分 -->
+				<div id="leftMain">
+					
+				</div>
+				<!-- 右部分 -->
+				<div id="rightMain">
+					
+				</div>
+			</div>
+			<!-- 底部 -->
+			<div id="footer">
+
+			</div>
+		</div>
+
+	</body>
+</html>

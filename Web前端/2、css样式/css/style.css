@@ -1,0 +1,9 @@
+@charset "utf-8";
+p{
+	color: pink;
+	/* 三种表现方法：英文单词、#fff000、RGB */
+	
+	background-color: antiquewhite;
+	width: 300px;
+	height: 100px;
+}

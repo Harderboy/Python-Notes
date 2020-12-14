@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>选择器</title>
+		<style type="text/css">
+			/* 通配符选择器 */
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			/* 标签选择器 */
+			h5{
+				background-color: aqua;
+			}
+			.p1{
+				color: red;
+			}
+			/* id选择器 */
+			/* 类选择器 */
+			.p2{
+				color: yellow;
+			}
+			/* 交集选择器 */
+			h1.a{
+				background-color: #FF0000;
+			}
+			/* 并集选择器 */
+			h1,div,#ppp{
+				background-color: pink;
+			}
+			/* 后代选择器 */
+			#houdai p{
+				background-color: yellow;
+			}
+			/* 子选择器 */
+			/* 属性选择器 */
+			/* 伪类选择器 */
+			a:link{
+				color: red;
+			}
+			a:visited{
+				color: blue;
+			}
+			a:hover{
+				color: green;
+			}
+			a:active{
+				color: pink;
+			}
+			/* 选择器权重 常用的四类选择器（标签、类、id、属性选择器）中id选择器权重最高*/
+		</style>
+	</head>
+	<body>
+		<p class="p1,pp1" id="log">sunck is good man!</p>
+		<p class="p1">sunck is good man!</p>
+		<p class="p2">sunck is good man!</p>
+		<p class="p3">sunck is good man!</p>
+		
+		<h1 class="a">1111</h1>
+		<h2 class="b">2222</h2>
+		<h3>3333</h3>
+		<h4>4444</h4>
+		<h5>5555</h5>
+		<div id="">
+			dffg
+		</div>
+		<p id="ppp">sfdfs</p>
+		<p>dfasdf</p>
+		
+		<div id="houdai">
+			<p>123466</p>
+		</div>
+		
+		<br />
+		<a href="##" target="_blank">百度一下</a>
+		
+		<div id="t" class="p4">
+			
+		</div>
+	</body>
+</html>

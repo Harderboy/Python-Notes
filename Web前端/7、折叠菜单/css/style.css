@@ -1,0 +1,33 @@
+*{
+	padding: 0;
+	margin: 0;
+}
+li{
+	list-style: none;
+}
+li a{
+	color: red;
+	text-decoration: none;/*去掉链接下边的线*/
+}
+#menu{
+	width: 160px;
+	margin: 50px;
+}
+#menu li{
+	font-size: 14px;
+}
+/* 选择父元素为 #menu 元素的所有 li 元素 */
+#menu>li{
+	/* background:url(../img/); */
+	line-height: 24px;
+	text-indent: 60px;
+}
+#menu ul{
+	display: none;
+}
+#menu ul li{
+	text-indent: 30px;
+}
+#menu>li:hover ul{
+	display: block;
+}
