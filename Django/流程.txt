@@ -1,0 +1,50 @@
+tree . /F 
+
+# 创建（项目）工程 project
+django-admin startproject mysite
+
+# 创建app
+python manage.py startapp myApp
+
+# 激活app
+修改settings.py中的INSTALLED_APPS
+
+# 配置数据库
+修改__init__.py文件
+修改settings.py中的DATABASES（数据库需事先创建）
+
+# 创建模型类
+app目录下models.py文件
+
+# 生成迁移文件
+python manage.py makemigrations
+
+# 执行迁移
+python manage.py migrate
+
+# 查看数据库判断是否生成数据
+mysql -u root -p
+show tables
+
+# 创建终端shell
+python manage.py shell
+
+# 创建管理员用户
+python manage.py createsuperuser
+
+# 启动app
+python manage.py runserver
+
+# 配置站点（非必须）
+admin.py
+
+# 创建模板目录/app模板目录
+
+# 在settings.py文件TEMPLATES中配置模板路径
+'DIRS': [os.path.join(BASE_DIR, 'templates')]
+
+# 在project目录下修改urls.py
+
+# 在app目录下创建urls.py
+
+# 在app目录下配置views.py

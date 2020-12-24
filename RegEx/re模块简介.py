@@ -1,5 +1,7 @@
 import re
 
+# '/' 斜杠
+# '\' 转义字符
 r'''
 re.match函数
     扫描整个字符串，返回从起始位置成功的匹配
@@ -25,7 +27,7 @@ flags 标志位:
 # span()：返回一个元组包含匹配 (开始,结束) 的位置
 print(re.match('www', "www.baidu.com").span())
 print(re.match('www', "ww.baidu.com"))
-print(re.match('www', "baike.baidu.com"))
+print(re.match('www', "baike.www.com"))
 print(re.match('www', "wwW.baidu.com"))
 print(re.match('www', "wwW.baidu.com", re.I))
 print(re.match('www', "wwW.baidu.com", flags=re.I))
@@ -38,10 +40,18 @@ re.search方法
     re.search(pattern, string, flags=0)
 功能：
     扫描整个字符串并返回第一个成功的匹配。
+    匹配成功re.search()方法返回一个匹配的对象，否则返回None。
 '''
 
 print(re.search('www', 'www.runoob.com').span())  # 在起始位置匹配
 print(re.search('com', 'www.runoob.com').span())  # 不在起始位置匹配
+print(re.search('cn', 'www.runoob.com'))
+# a = re.search('cn', 'www.runoob.com')
+# print(a)
+# print(not a)
+# b = re.search('com', 'www.runoob.com')
+# print(b)
+# print(not b)
 
 print("-" * 22)
 
@@ -66,9 +76,10 @@ print(re.findall("sunck", "good man is sunck!Sunck is nice", flags=re.I))
 
 print('--------匹配单个字符与数字---------')
 r'''
-    匹配除换行符以外的任意字符
-[] 字符集合，表示匹配方括号中所包含的任意一个字符
-[a-zA-Z0-9_] 匹配任何字母、数字和下划线
+.   匹配除换行符以外的任意字符
+[]  字符集合，表示匹配方括号中所包含的任意一个字符
+[1-9]  匹配1-9中的任意一个数字
+[a-zA-Z0-9_]  匹配任何字母、数字和下划线
 [^...]  ^ 脱字符 表示不匹配集合中的字符 （不在[]中的字符）
 [^0-9] 
 \d	匹配任意数字，等价于 [0-9]
@@ -114,3 +125,52 @@ print(re.search(r"er\b", "never die"))
 print(re.search(r"er\b", "verb"))
 print(re.search(r"er\B", "never die"))
 print(re.search(r"er\B", "verb"))
+
+
+print('--------匹配多个字符---------')
+'''
+(xyz)  匹配小括号中的xyz（作为一个整体去匹配）
+x？     匹配0个或者1个x
+x*      匹配0个或者任意多个x
+x+      匹配至少一个x
+x{n}    匹配确定的n个x（n为一个非负整数）
+x{n，}  匹配至少n个x
+x{n,m}  匹配至少n个最多m个x，注意n <= m
+x|y     匹配x或者y
+
+'''
+
+# 非贪婪匹配（尽可能少的匹配）
+print(re.findall(r'a?', "aaaa"))
+# 贪婪匹配（匹配尽可能多的匹配）
+print(re.findall(r'a*', "aaabaaa"))
+# 贪婪匹配
+print(re.findall(r'a+', "aaabaaaaa"))
+print(re.findall(r'a{3}', "aaaabaa"))
+# 贪婪匹配
+print(re.findall(r'a{3,}', "aaaaaaabaa"))
+print(re.findall(r'a{3,6}', "aaaaabaaa"))
+print(re.findall(r'((s|S)unck)', "sunck--Sunck"))
+
+print('-' * 22)
+# 需求，提取sunck......man
+str = "sunck is a good man!sunck is a nice man!sunck is a very handsome man"
+res = re.findall(r"^sunck.*man$", str)  # .* 贪婪匹配
+print(res)
+res2 = re.findall(r"^sunck.*?man$", str)
+print(res2)
+res3 = re.findall(r"sunck.*?man", str)
+print(res3)
+
+
+print('--------特殊---------')
+'''
+*? +? x?  最小匹配，解贪婪匹配 从"贪婪"表达式转换为"非贪婪"表达式或者最小匹配。
+(?:x)   类似（xyz），但不表示一个组
+
+'''
+# 例子
+# 注释 /*  part1 */ /*  part2 */
+# '\n' 转义成换行符 "\\n" 不转义 '\\' 两个转义字符表示不转义
+print(re.findall(r"/\*.*\*/", "/*  part1 */ /*  part2 */"))
+print(re.findall(r"/\*.*?\*/", "/*  part1 */ /*  part2 */"))

@@ -182,6 +182,9 @@
     print(tuple1)
     ```
 
+  - 创建空元组: `tup1 = ()`
+    - 元组中只包含一个元素时，需要在元素后面添加逗号，否则括号会被当作运算符使用：
+
   - 二维元组
 
 - len(tuple)：计算元组元素**个数**
@@ -1338,3 +1341,68 @@
 - 栈、堆保存的数据类型分类 只读数据区 内存区等
 
 - 买书 List ：js、黑客与画家、设计模式、数学之美、python、深入计算机操作系统、人月神话、乔布斯
+
+### day_20201215
+
+- try except 使用场景总结
+
+### day_20201217
+
+- 正则深入理解
+  - 理解下面代码中两种正则为何输出结果不同？
+  - "()"的作用
+
+  ```python
+  def checkPhoneNumber3(str):
+    # pat = r'1(3|4|5|6|7|8|9)\d{9}'
+    pat = r'1[3456789]\d{9}'
+    res = re.findall(pat, str)
+    return res
+
+  str4 = "adfkjakdf13022364644ajdfka15236512486dkfjakfjl"
+  res5 = checkPhoneNumber3(str4)
+  print(res5)
+  ```
+
+### day_20201218
+
+正则表达式中组的使用特点
+
+### day_20201221
+
+通过以下代码，理解分隔符的使用特点
+
+```python
+str1 = "sunck         is good man"
+print(str1.split(' '))
+print(re.split(r" +", str1))
+```
+
+质量不高凑合看，理解贪婪和非贪婪区别 以及懒惰和非懒惰
+
+```bash
+后边多一个？表示懒惰模式。
+必须跟在*或者+后边用
+如：<img src="test.jpg" width="60px" height="80px"/>
+如果用正则匹配src中内容非懒惰模式匹配
+src=".*"
+匹配结果是：src="test.jpg" width="60px" height="80px"
+意思是从="往后匹配，直到最后一个"匹配结束
+
+懒惰模式正则：
+src=".*?"
+结果：src="test.jpg"
+因为匹配到第一个"就结束了一次匹配。不会继续向后匹配。因为他懒惰嘛
+```
+
+- html 中的锚点回顾
+
+- %d 和 %s 区别
+
+  ```python
+  import os
+
+  print("主（父）进程启动-%d"%(os.getpid()))
+  print("主（父）进程启动-%s"%(os.getpid()))
+  print(type(os.getpid()))
+  ```
