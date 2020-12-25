@@ -1,0 +1,17 @@
+from multiprocessing import Process
+import os
+import time
+
+
+class HtomatoProcess(Process):
+    def __init__(self, name):
+        Process.__init__(self)
+        self.name = name
+
+    def run(self):
+        print("子进程（%s--%d）启动" % (self.name, os.getpid()))
+
+        # 子进程的功能
+
+        time.sleep(3)
+        print("子进程（%s--%d）结束" % (self.name, os.getpid()))

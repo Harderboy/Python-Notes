@@ -1406,3 +1406,84 @@ src=".*?"
   print("主（父）进程启动-%s"%(os.getpid()))
   print(type(os.getpid()))
   ```
+
+### day_20201224
+
+- 进程理解、具体实例练习，进程池进程数量怎么设置才能更快更高效
+- 继承父类重写父类方法，多练习几个实例
+- 调用父类构造方法的写法（怎么判断多少个参数）（封装进程对象有感）
+
+  ```python
+  class HtomatoProcess(Process):
+    def __init__(self, name):
+        Process.__init__(self)
+        self.name = name
+  ```
+
+### day_20201225
+
+- 知乎对进程和线程的解释看一遍，理解高赞解释的思路：[进程=火车，线程=车厢](https://www.zhihu.com/question/25532384/answer/411179772)
+
+  ```markdown
+  做个简单的比喻：进程=火车，线程=车厢
+
+  - 线程在进程下行进（单纯的车厢无法运行）
+  - 一个进程可以包含多个线程（一辆火车可以有多个车厢）
+  - 不同进程间数据很难共享（一辆火车上的乘客很难换到另外一辆火车，比如站点换乘）
+  - 同一进程下不同线程间数据很易共享（A车厢换到B车厢很容易）
+  - 进程要比线程消耗更多的计算机资源（采用多列火车相比多个车厢更耗资源）
+  - 进程间不会相互影响，一个线程挂掉将导致整个进程挂掉（一列火车不会影响到另外一列火车，但是如果一列火车上中间的一节车厢着火了，将影响到所有车厢）
+  - 进程可以拓展到多机，进程最多适合多核（不同火车可以开在多个轨道上，同一火车的车厢不能在行进的不同的轨道上）
+  - 进程使用的内存地址可以上锁，即一个线程使用某些共享内存时，其他线程必须等它结束，才能使用这一块内存。（比如火车上的洗手间）－"互斥锁"
+  - 进程使用的内存地址可以限定使用量（比如火车上的餐厅，最多只允许多少人进入，如果满了需要在门口等，等有人出来了才能进去）－“信号量”
+  ```
+
+- 待理解：`local.x`、`run(local.x, n)` -- 5.ThreadLocal.py
+- 函数可以直接获取 while 循环中的变量么？直接传到函数内部？结合变量作用域学习
+- while循环中的变量为全局变量？
+- 对象和变量的区别 对象全局引用？如下代码引发系列疑惑
+
+  ```python
+  import socket
+  import threading
+
+  # 创建一个socket
+  server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+
+  # 绑定IP端口
+  server.bind(('10.198.112.111', 8080))
+  # 监听
+  server.listen(5)
+
+
+  def run(ck):
+      # 没有用到ck变量
+      data = clientSocket.recv(1024)
+      print("收到" + str(clientSocket) + "的数据" + data.decode("utf-8"))
+      # sendData = input("请输入返回给客户端的数据")
+      clientSocket.send("sunck is good man".encode("utf-8"))
+
+
+  print("服务器启动成功，等待客户端链接")
+  while True:
+      # 等待连接
+      clientSocket, clientAddress = server.accept()
+      print("%s -- %s 连接成功" % (str(clientSocket), clientAddress))
+      t = threading.Thread(target=run, args=(clientSocket,))
+
+      t.start()
+  ```
+
+- 完成聊天界面可视化设计 线程部分课程，单独拿出来当作一个小项目
+- 涉及作用域，如何理解：
+
+  ```python
+  def run():
+      while i in range(10):
+          print("%s***%d" % (threading.current_thread().name, i))
+          time.sleep(2)
+
+  if __name__ == "__main__":
+      for i in range(5):
+          threading.Thread(target=run).start()
+  ```
