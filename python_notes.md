@@ -1438,7 +1438,7 @@ src=".*?"
   - 进程使用的内存地址可以限定使用量（比如火车上的餐厅，最多只允许多少人进入，如果满了需要在门口等，等有人出来了才能进去）－“信号量”
   ```
 
-- 待理解：`local.x`、`run(local.x, n)` -- 5.ThreadLocal.py
+- 待理解：`local.x`、`run(local.x, n)` 相关文件：线程-5.ThreadLocal.py
 - 函数可以直接获取 while 循环中的变量么？直接传到函数内部？结合变量作用域学习
 - while循环中的变量为全局变量？
 - 对象和变量的区别 对象全局引用？如下代码引发系列疑惑
@@ -1486,4 +1486,25 @@ src=".*?"
   if __name__ == "__main__":
       for i in range(5):
           threading.Thread(target=run).start()
+  ```
+
+- 数据结构中的队列、栈、堆理解，结合进程、线程
+- 函数返回值为list、元组、字典 怎么return
+
+### day_20201226
+
+- 单元测试详细学习，常见测试方法和原理，了解相关测试库，代码逻辑
+- 编码学习，如何编码，为什么编码，编码类型（Linux和windows区别）
+
+- `passwd = ("".join(x) for x in itertools.product("0123745689", repeat=3))` 类似这种代码的写法学习
+  - [列表推导式、嵌套列表](https://www.runoob.com/python3/python3-data-structure.html)
+
+- 异常捕获需要注意的点：
+
+  ```markdown
+  try 语句按照如下方式工作；
+    - 首先，执行 try 子句（在关键字 try 和关键字 except 之间的语句）。
+    - 如果没有异常发生，忽略 except 子句，try 子句执行后结束。
+    - 如果在执行 try 子句的过程中发生了异常，那么 try 子句余下的部分将被忽略。如果异常的类型和 except 之后的名称相符，那么对应的 except 子句将被执行。
+    - 如果一个异常没有与任何的 except 匹配，那么这个异常将会传递给上层的 try 中
   ```
