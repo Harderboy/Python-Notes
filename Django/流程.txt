@@ -1,9 +1,11 @@
 tree . /F 
 
+# 注意执行命令是在manage.py所在目录
+
 # 创建（项目）工程 project
 django-admin startproject mysite
 
-# 创建app
+# 进入mysite目录，创建app
 python manage.py startapp myApp
 
 # 激活app
