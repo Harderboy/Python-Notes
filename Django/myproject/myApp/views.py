@@ -184,7 +184,7 @@ def redirect1(request):
 
 
 def redirect2(request):
-    return HttpResponse("我是重定向后的视图")
+    return HttpResponse("<h1>我是重定向后的视图</h1>")
 
 
 # session
@@ -426,6 +426,8 @@ def edit(request):
 
 # celery
 import time
+
+
 def celery(request):
     print("sunck is good man")
     time.sleep(5)

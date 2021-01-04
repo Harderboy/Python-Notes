@@ -19,10 +19,11 @@ python manage.py startapp myApp
 app目录下models.py文件
 
 # 生成迁移文件
-python manage.py makemigrations
+python manage.py makemigrations + app_name（app名称 可选）
 
 # 执行迁移
 python manage.py migrate
+如果只执行这条命令只会生成系统相关的迁移文件，不含自己定义的模型model数据
 
 # 查看数据库判断是否生成数据
 mysql -u root -p

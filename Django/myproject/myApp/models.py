@@ -12,6 +12,8 @@ class Grades(models.Model):
     gboynum = models.IntegerField()
     isDelete = models.BooleanField(default=False)
 
+    # admin后台将每个Grades对象显示为：Grades object
+    # 解决：重写__str__方法
     def __str__(self):
         # return "%s-%d-%d" % (self.gname, self.ggirlnum, self.gboynum)
         return self.gname

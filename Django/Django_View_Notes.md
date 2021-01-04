@@ -246,8 +246,8 @@
     - None：永不过期
     - 如果不设置，两个星期后过期
 
-  - 存储 session 的位置
-  Django 中，Session 可以保存在数据库中，可以保存到缓冲中，也可以保存到文件中，默认情况下是保存在数据库中，数据库中有一张 session 表。可以通过修改settings.py 文件来修改 session 的保存方式。
+  - 存储 session 的位置  
+  Django 中，Session 可以保存在数据库中，可以保存到缓冲中，也可以保存到文件中，默认情况下是保存在数据库中，数据库中有一张 session 表。可以通过修改 `settings.py` 文件来修改 session 的保存方式。
     - 数据库，默认保存在数据库中：`SESSION_ENGINE = 'django.contrib.sessions.backends.db'`
     - 保存在文件中：`SESSION_ENGINE = 'django.contrib.sessions.backends.file'`
     - 保存在缓存中：`SESSION_ENGINE = 'django.contrib.sessions.backends.cache'`

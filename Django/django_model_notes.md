@@ -1,11 +1,52 @@
 # Django Model
 
+Django 对各种数据库提供了很好的支持，包括：PostgreSQL、MySQL、SQLite、Oracle。
+
+Django 为这些数据库提供了统一的调用API。 我们可以根据自己业务需求选择不同的数据库。
+
+Django 模型使用自带的 ORM。
+
+对象关系映射（Object Relational Mapping，简称 ORM ）用于实现面向对象编程语言里不同类型系统的数据之间的转换。
+
+- ORM 在业务逻辑层和数据库层之间充当了桥梁的作用。
+
+- ORM 是通过使用描述对象和数据库之间的映射的元数据，将程序中的对象自动持久化到数据库中。
+
+![ORM](../images/Django_ORM.png)
+
+使用 ORM 的好处：
+
+- 提高开发效率。
+- 不同数据库可以平滑切换。
+
+使用 ORM 的缺点：
+
+- ORM 代码转换为 SQL 语句时，需要花费一定的时间，执行效率会有所降低。
+- 长期写 ORM 代码，会降低编写 SQL 语句的能力。
+
+ORM 解析过程:
+
+1. ORM 会将 Python 代码转成为 SQL 语句。
+2. SQL 语句通过 pymysql 传送到数据库服务端。
+3. 在数据库中执行 SQL 语句并将结果返回。
+
+ORM 与数据库对应关系表：
+
+![ORM 和 Database 对应关系](../images/ORM_Database.png)
+
+参考资料：[Django 模型-菜鸟](https://www.runoob.com/django/django-model.html)
+
 ## 关联关系
 
-- 分类
-  - `ForeignKey`：一对多，将字段定义在多的端中
-  - `ManyToManyField`：多对多，将字段定义在两端中
-  - `OneToOneField`：一对一，经字段定义在任意一端中
+具体分类:
+
+- `ForeignKey`：一对多，将字段定义在多的端中，如：一个家庭有多个人，一般通过外键来实现
+- `ManyToManyField`：多对多，将字段定义在两端中，如：一个学生有多门课程，一个课程有很多学生，一般通过第三个表来实现关联。
+- `OneToOneField`：一对一，经字段定义在任意一端中，如：一个人对应一个身份证号码，数据字段设置 unique。
+
+如图：
+
+![关联关系](../images/关联关系.png)
 
 ## 模型成员
 
@@ -41,7 +82,7 @@
   - 在管理器上条用过滤器方法返回查询集
   - 查询集经过过滤器筛选后返回新的查询集，所以可以写成链式调用
   - 惰性执行：创建查询集不会带来任何数据的访问，直到调用数据库时，才会访问数据
-  - 直接访问数据的情况：1.迭代 2.序列化 3.与if合用
+  - 直接访问数据的情况：1.迭代 2.序列化 3.与 if 合用
   - 返回查询集的方法成为过滤器
     - `all()`:来查询所有内容。返回的是 QuerySet 类型数据，类似于 list，里面放的是一个个模型类的对象，可用索引下标取出模型类的对象。
     - `filter()`：返回符合条件的数据
@@ -93,7 +134,7 @@
       - 快捷查询：pk 代表主键
 
     - 聚合函数
-      - 使用aggregate()函数返回聚合函数的值
+      - 使用 aggregate( )函数返回聚合函数的值  
         `from django.db.models import Max, Min`  
         `maxAge = Students.stuObject2.aggregate(Max("sage"))`
       - Avg
@@ -101,16 +142,16 @@
       - Sum
 
     - F 对象
-      - 可以使用模型的A属性与B属性比较
+      - 可以使用模型的A属性与B属性比较  
         `from django.db.models import F`  
         `Grades.objects.filter(ggirlnum__lt=F('gboynum'))`
-      - 支持对F对象的算术运算
+      - 支持对F对象的算术运算  
         `Grades.objects.filter(ggirlnum__lt=F('gboynum') - 50)`
 
     - Q 对象
       - 过滤器方法中的关键字参数，条件为 and 模式：filter(键=值,键=值)
       - 需求：进行 `or` 查询
-      - 解决：使用 Q 对象
+      - 解决：使用 Q 对象  
         `from django.db.models import Q`  
         `studentsList = Students.stuObject2.filter(Q(pk__lte=3) | Q(sage__lt=23))`  
         `studentsList = Students.stuObject2.filter(Q(pk__lte=3))` 只有一个 Q 对象，就是用于匹配的  
@@ -118,9 +159,30 @@
 
 ## 模型添加数据
 
-- save()
-- create()
+两种方法：
 
-## 模型修改
+- 对象.save()
+- 通过 ORM 提供的 objects 提供的方法 create 来实现（推荐）
 
-## 模型删除
+可参考：[Django ORM 单表实例](https://www.runoob.com/django/django-orm-1.html) 进行对照练习，以及学习多表实例，加深 `一对多` 和 `多对多` 关系的理解
+
+以及数据查找在 shell 中的使用
+
+![shell 中数据访问](../images/model_一对多、一对一访问.png)
+
+## 模型数据修改
+
+## 模型数据删除
+
+## 添加新的自定义 model 类
+
+如果你之前还未创建某个表（单个表）结构，可使用以下命令创建：
+
+```bash
+$ python manage.py makemigrations TestModel  # 让 Django 知道我们在我们的模型有一些变更
+  ...
+$ python manage.py migrate TestModel   # 创建表结构
+  ...
+```
+
+直接指定 `models.py` 中具体类名，相当于数据库中的表名，区别在于表名前边多出了其所在的 app 名称，比如：myapp_students

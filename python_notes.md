@@ -1570,3 +1570,30 @@ src=".*?"
 
 ### day_20210104
 
+- python 文件开头 `#coding=utf-8`
+
+- 注意 Django 中这几种写法（python3 固定格式）
+  `from .models import Grades, Students`  
+  `from django.db.models import F, Q`  
+  `from . import views`
+
+- 装饰器
+
+  ```python
+  admin.site.register(Grades, GradesAdmin)
+
+  @admin.register(Students)
+  ```
+
+  以及 auth 组件相关的装饰器：`@login_required`
+
+- `or` 的使用，举例：
+
+  ```python
+  a = 0 or 1
+  print(a)
+  ```
+
+- django 源码待学习
+
+- 模型添加、删除、修改数据待练习补充文档
