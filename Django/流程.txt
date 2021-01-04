@@ -41,12 +41,18 @@ python manage.py runserver
 admin.py
 
 # 创建模板目录/app模板目录
+手动创建目录
 
 # 在settings.py文件TEMPLATES中配置模板路径
 'DIRS': [os.path.join(BASE_DIR, 'templates')]
 
 # 在project目录下修改urls.py
+将子路由添加进来：url('', include('myApp.urls'))
 
 # 在app目录下创建urls.py
+格式同项目下的urls.py类似，配合views.py
+from django.conf.urls import url
+from django.urls import path
+from . import views
 
 # 在app目录下配置views.py

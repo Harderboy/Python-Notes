@@ -83,3 +83,13 @@ class Students(models.Model):
                   sgrade=grade,
                   isDelete=isD)
         return stu
+
+    def getName(self):
+        return self.sname
+
+
+from tinymce.models import HTMLField
+
+
+class Text(models.Model):
+    str = HTMLField()

@@ -13,10 +13,8 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 from pathlib import Path
 import os
 
-
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
@@ -25,10 +23,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = '&5^yta)ir#l-q*s@h6p@zaoly9u-++025_$%to9*&&x*a&sk22'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
-
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 
@@ -40,6 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'myApp',
+    'tinymce',
+    'djcelery',
 ]
 
 MIDDLEWARE = [
@@ -50,6 +49,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    # 'middleware.myApp.myMiddle.MyMiddle',
 ]
 
 ROOT_URLCONF = 'myproject.urls'
@@ -72,7 +72,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'myproject.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
@@ -87,25 +86,27 @@ DATABASES = {
     }
 }
 
-
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
     {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+        'NAME':
+        'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+        'NAME':
+        'django.contrib.auth.password_validation.MinimumLengthValidator',
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+        'NAME':
+        'django.contrib.auth.password_validation.CommonPasswordValidator',
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+        'NAME':
+        'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
-
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
@@ -122,8 +123,43 @@ USE_L10N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+# 普通文件
+# STATICFILES_DIRS = [
+#     os.path.join(BASE_DIR, 'static'),
+# ]
+
+# 上传文件目录
+MEDIA_ROOT = os.path.join(BASE_DIR, r'static\uploadfile')
+
+# 富文本
+TINYMCE_DEFAULT_CONFIG = {
+    'theme': 'advanced',
+    'width': 600,
+    'height': 400,
+}
+
+# celery
+import djcelery
+djcelery.setup_loader()  # 初始化
+BROKER_URL = 'redis://:sunck@127.0.0.1:6379/0'
+CELERY_IMPORTS = ('myApp.task', )
+
+# SESSION_COOKIE_NAME == "sessionid"  # session的cookie保存在浏览器上时的key
+# SESSION_COOKIE_PATH == '/'  # session的cookie保存的路径(默认)
+# SESSION_COOKIE_DOMAIN = None  # session的cookie保存的域名(默认)
+# SESSION_COOKIE_SECURE = False  # 是否Https传输cookie
+# SESSION_COOKIE_HTTPONLY = True  # 是否session的cookie只支持http传输(默认)
+# SESSION_COOKIE_AGE = 1209600  # session的cookie失效日期(2周)(默认)
+# SESSION_SAVE_EVERY_REQUEST = False  # 是否设置关闭浏览器使得session过期
+# SESSION_COOKIE_AT_BROWSER_CLOSE = False  # 是否每次请求都保存session，默认修改之后才能保存
+
+# SESSION_ENGINE = 'redis_sessions.session'
+# SESSION_REDIS_HOST = 'localhost'
+# SESSION_REDIS_PORT = '6379'
+# SESSION_REDIS_DB = 0
+# SESSION_REDIS_PASSWORD = 'htomato'
+# SESSION_REDIS_PREFIX = 'session'

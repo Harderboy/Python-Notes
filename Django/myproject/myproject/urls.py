@@ -17,9 +17,13 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf.urls import url, include
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     # url(r'^', include('myApp.urls'))
-    url('', include('myApp.urls'))
+    # 此版本不适用这种方法，须在对应app目录下的url.py文件中添加一行代码：app_name = 'app'，这种方法来命名app
+    # url('', include('myApp.urls', namespace="app"))
+    # url('', include('myApp.urls'))
+    url('sunck/', include('myApp.urls'))
     # path('', include('myApp.urls'))
 ]

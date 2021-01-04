@@ -7,12 +7,13 @@
 <body>
     <h1>学生信息列表</h1>
     <ul>
-            {%for student in students%}
-            <li>
-                {{student.sname}}--{{student.scontent}}--{{student.sgrade}}
-            </li>
-            {%endfor%}
+    {% for student in students %}
+        <li>
+            {{forloop.counter}}--{{student.sname}}--{{student.scontent}}--{{student.sgrade}}
+        </li>
+    {% empty %}
+        <h3>目前没有学生</h3>
+    {% endfor %}
     </ul>
-
 </body>
 </html>

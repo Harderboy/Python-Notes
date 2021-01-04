@@ -58,3 +58,7 @@ class StudentsAdmin(admin.ModelAdmin):
 
 # 改用装饰器
 # admin.site.register(Students, StudentsAdmin)
+
+from .models import Text
+
+admin.site.register(Text)

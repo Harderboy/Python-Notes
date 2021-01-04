@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>主页</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        <h1>index页面</h1>
+        <h1>{{stu.sname}}</h1>
+        <h1>{{stu.getName}}</h1>
+        <h1>num = {{num}}</h1>
+        {% if num %}
+            <h2>sunck is good!</h2>
+        {% endif %}
+
+        {% ifequal 'sunck' 'sunck' %}
+            <!-- 值1和值2相等时执行下面语句 -->
+            <h1>Welcome!</h1>
+        {% endifequal %}
+
+        {% ifnotequal 'sunck' 'kai' %}
+            <!-- 值1和值2相等时执行下面语句 -->
+            <h1>Not welcome!</h1>
+        {% endifnotequal %}
+
+        <h2>{{str|upper}}</h2>
+
+        {# 这是一个注释 #}
+
+        {% comment %}
+            <h1>comment测试</h1>
+            <h1>comment语法</h1>
+            {{stu.sname}}
+        {% endcomment%}
+
+        <h2>{{list|join:'#'}}</h2>
+        <h2>{{test|default:'没有'}}</h2>
+
+        <h2>{{num}}</h2>
+        <h2>{{num|add:10}}</h2>
+        <h2>{{num|add:-10}}</h2>
+        <!-- num/1*5 -->
+        <!-- num*5 -->
+        <h2>{% widthratio num 1 5%}</h2>
+        <!-- num/5 -->
+        <h2>{% widthratio num 5 1%}</h2>
+
+
+        {{code}}
+        {{code|escape}}
+        {{code|safe}}
+
+        {% autoescape off%}
+        {{code}}
+        {% endautoescape %}
+        <script src="" async defer></script>
+    </body>
+</html>

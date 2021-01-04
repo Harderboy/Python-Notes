@@ -1515,3 +1515,58 @@ src=".*?"
 - auto_created=True 、auto_now=True 冲突
 - 在定义管理器类中添加一个方法 待理解
 - model 添加数据、字段修改、删除待整理笔记补充完整
+
+### day_20201229
+
+- 待理解：`__init__` 方法已经在父类 `model.Models` 中使用，在自定义的模型中无法使用（定义的是类属性）
+- 反向解析
+- 查看官方文档的视图部分，浏览一遍，区分新老版本的变化
+- 表单写法，前端以及 ajax
+
+### day_20201231
+
+- html 中的跳转链接：`<form action="/sunck/showhomepage" method="POST">` 与 django 中的重定向 url：`return redirect('/sunck/homepage')` 写法存在差异？`/sunck/showhomepage` 中 showhomepage 后面加不加 `/`？（好像都可以） 重定向 url 结尾加不加 `/`（好像都可以）？ 留疑待思考测试总结
+
+- cookie 与 session 的理解继续深入
+- 获取 session 时 返回 none 的原因
+- 使用 redis 缓存 session 重新学习
+
+### day_20210101
+
+- 注意 url 正则的写法，最好末端加上 `/`，加上的话在浏览器输入时可不输入 `/` 浏览器自动添加，正则中不写 `/` 的话，浏览器输入 url 加 `/` 会出错
+  `url(r'^(\d+)/$', views.vote),`
+
+- CSRF 同源策略
+- 获取 post 数据时返回 None
+  - 原因：`<form action="/sunck/showinfo/" method="POST">` 没有写 `method="POST"` 或者 `method="post"`
+
+- `<form action="showinfo/">`：拼接、`<form action="/showinfo/">`：根路径 对比 `<form action="/sunck/showinfo/">`：根路径
+
+- 网站放问过程中那些 cookie token 是相同的
+
+### day_20210102
+
+- 验证码背景颜色修改（有时间）
+- 加载 css 等静态文件未成功 静态文件夹配置路径要求？
+  `{% load static from staticfiles %}`
+  - 待查看官方手册
+- 对照 Python-100-Days 补漏查缺
+
+### day_20210103
+
+- 更新主分支内容，子分支中 master 相关文件会更新么，从个人分支合并到 dve 分支，待测试总结
+- 多人协作工作模式继续理解，需要测试才能理解的更清楚
+- 切换到指定标签：`git checkout tag版本号`
+- jqurey、ajax 学习完善 Django 进阶 ajax 部分
+- django 后台样式丢失，css 资源加载失败，解决方法，`setting.py` 中 DEBUG 选项为 True，否则无法映射到静态文件目录，参考链接：[django后台样式丢失，css资源加载失败](https://blog.csdn.net/qq_39208536/article/details/81568223)，思考原因
+
+  ```log
+  Refused to apply style from 'http://127.0.0.1:8000/static/admin/css/base.css' because its MIME type ('text/html') is not a supported stylesheet MIME type, and strict MIME checking is enabled.
+  ```
+
+- 富文本展示有问题
+
+- celery 耗时操作补充完整，基本功能会用
+
+### day_20210104
+

