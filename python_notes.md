@@ -1620,3 +1620,68 @@ src=".*?"
 - Django Nginx+uwsgi 后续项目部署再进行学习
   - 使用 python manage.py runserver 来运行服务器。这只适用测试环境中使用。
   正式发布的服务，我们需要一个可以稳定而持续的服务器，比如apache, Nginx, lighttpd等。
+
+返回多个值的函数
+
+- 为了能返回多个值，函数直接return一个元组就行了
+
+  ```python
+  >>> def myfun():
+  ... return 1, 2, 3
+  ...
+  >>> a, b, c = myfun()
+  >>> a
+  1
+  >>> b
+  2
+  >>> c
+  3
+
+
+  def myfun():
+      return 1, 2, 3
+
+
+  a, b, c = myfun()
+  print("a:", a)
+  print(type(a))
+  print('b:', b)
+  print("c:", c)
+  ```
+
+  尽管myfun()看上去返回了多个值，实际上是先创建了一个元组然后返回的。 这个语法看上去比较奇怪，实际上我们使用的是逗号来生成一个元组，而不是用括号
+
+  ```python
+  >>> a = (1, 2) # With parentheses
+  >>> a
+  (1, 2)
+  >>> b = 1, 2 # Without parentheses
+  >>> b
+  (1, 2)
+  >>>
+
+  d = 1, 2  # 等同于 d = (1,2)
+  print(d)
+  print(type(d))
+  ```
+
+  当我们调用返回一个元组的函数的时候 ，通常我们会将结果赋值给多个变量，就像上面的那样。 其实这就是1.1小节中我们所说的元组解包。返回结果也可以赋值给单个变量， 这时候这个变量值就是函数返回的那个元组本身了：
+
+  ```python
+  >>> x = myfun()
+  >>> x
+  (1, 2, 3)
+  >>>
+
+  a = myfun()
+  print(a)
+  print(type(a))
+  ```
+
+生成器相关知识待继续学习
+
+- [Python 生成器与它的 send，throw，close 方法](https://blog.csdn.net/jpch89/article/details/87036970)
+
+一本优秀的 python 学习手册，目标读者是那些想深入理解 Python 语言机制和现代编程风格的有经验的 Python 程序员。
+
+- [Python Cookbook 3rd Edition Documentation](https://python3-cookbook.readthedocs.io/zh_CN/latest/index.html)

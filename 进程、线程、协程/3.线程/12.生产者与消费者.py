@@ -5,7 +5,7 @@ import time
 
 
 # 生产者
-def product(id, q):
+def producer(id, q):
     while True:
         num = random.randint(0, 10000)
         q.put(num)
@@ -16,7 +16,7 @@ def product(id, q):
 
 
 # 消费者
-def customer(id, q):
+def consumer(id, q):
     while True:
         item = q.get()
         if item is None:
@@ -30,7 +30,7 @@ if __name__ == "__main__":
 
     # 启动生产者
     for i in range(4):
-        threading.Thread(target=product, args=(i, q)).start()
+        threading.Thread(target=producer, args=(i, q)).start()
     # 启动消费者
     for i in range(3):
-        threading.Thread(target=customer, args=(i, q)).start()
+        threading.Thread(target=consumer, args=(i, q)).start()
