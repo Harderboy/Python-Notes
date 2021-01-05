@@ -66,4 +66,6 @@ urlpatterns = [
     url(r'^edit/$', views.edit),
 
     url(r'^celery/$', views.celery),
+
+    url(r'^login2/$', views.Login.as_view()),
 ]

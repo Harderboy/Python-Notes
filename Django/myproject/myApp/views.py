@@ -433,3 +433,20 @@ def celery(request):
     time.sleep(5)
     print("sunck is nice man")
     return render(request, 'myApp/celery.html')
+
+
+# CBV
+from django.views import View
+
+
+class Login(View):
+    def get(self, request):
+        return HttpResponse("GET 方法")
+
+    def post(self, request):
+        user = request.POST.get("user")
+        pwd = request.POST.get("pwd")
+        if user == "runoob" and pwd == "123456":
+            return HttpResponse("POST 方法")
+        else:
+            return HttpResponse("POST 方法 1")

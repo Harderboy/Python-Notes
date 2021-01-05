@@ -27,7 +27,11 @@
     - `process_view(self,request,view_func,view_args,view_kwargs)`：在调用试图之前执行，每个请求上都会调用，返回 None 或者 HttpResponse 对象
     - `process_template_reponse(self,request,response)`：在视图刚好执行完后调用，每个请求上都会调用，返回 None 或者 HttpResponse 对象，以及使用 render
     - `process_reponse(self,response)`：在执行 template 后调用，所有响应返回浏览器之前调用，每个请求上都会调用，返回 HttpResponse 对象
-    - `process_exception(self,exception)`：当视图抛出异常时调用，返回 HttpResponse 对象
+    - `process_exception(self,exception)`：当只有在视图函数中抛出异常时调用，返回 HttpResponse 对象
+
+    执行顺序：
+
+    ![middleware](../images/middleware.png)
 
   - 自定义中间件
     - 项目目录下创建中间件目录，中间件目录下创建 app 目录，app 目录下创建中间件（python 文件）
@@ -43,6 +47,8 @@
 
   - 使用自定义中间件
     - 在 `settings.py` 的 `MIDDLEWARE` 中添加 `middleware.myApp.myMiddle.MyMiddle`
+    - 默认会处理所有请求
+    - 注意写法
 
   - 上传图片
     - 概述：文件上传时，文件数据存储在 request.FILES 属性中

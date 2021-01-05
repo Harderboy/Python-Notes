@@ -1597,3 +1597,26 @@ src=".*?"
 - django 源码待学习
 
 - 模型添加、删除、修改数据待练习补充文档
+
+### day_20210105
+
+- 中间件继续学习，可参考 [Django 中间件](https://www.runoob.com/django/django-middleware.html)
+
+- Django Form 组件后续补充
+
+- 借助 CBV 更好的理解继承，子类调用继承父类的静态方法（`类名.方法名`）以及改写父类的某些方法
+  - [python类的实例方法、静态方法和类方法区别及其应用场景](https://blog.csdn.net/helloxiaozhe/article/details/79940321?utm_medium=distribute.pc_relevant_t0.none-task-blog-BlogCommendFromBaidu-1.control&depth_1-utm_source=distribute.pc_relevant_t0.none-task-blog-BlogCommendFromBaidu-1.control)
+  - [Python类调用实例方法](http://c.biancheng.net/view/2267.html)
+  - 以上内容待整理总结
+
+- 注意：Django 服务器在新添加文件后可能识别不出来，需要重启，但是在现有文件基础上更改能很快识别
+
+- 函数嵌套总结
+
+- python 继承父类后，可以在子类中定义其自身的方法
+  - 重新理解继承、多态的概念
+  - 多做题，多敲代码，多看代码
+
+- Django Nginx+uwsgi 后续项目部署再进行学习
+  - 使用 python manage.py runserver 来运行服务器。这只适用测试环境中使用。
+  正式发布的服务，我们需要一个可以稳定而持续的服务器，比如apache, Nginx, lighttpd等。
