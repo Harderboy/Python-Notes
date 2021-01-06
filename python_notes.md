@@ -1685,3 +1685,14 @@ src=".*?"
 一本优秀的 python 学习手册，目标读者是那些想深入理解 Python 语言机制和现代编程风格的有经验的 Python 程序员。
 
 - [Python Cookbook 3rd Edition Documentation](https://python3-cookbook.readthedocs.io/zh_CN/latest/index.html)
+
+- 进程、线程、协程的应用场景继续深入学习，有时间总结成文档。
+
+### day_20210106
+
+- json数据用双引号，字符串数据用单引号
+
+- 集合是通过哈希表实现的，所以添加，删除，查找的时间复杂度都是O(1)其实不太准确。
+  - 正确的复杂度如何待思考总结
+
+- 类属性、成员属性、成员方法、成员变量等名词整理

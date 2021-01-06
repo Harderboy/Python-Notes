@@ -1,0 +1,29 @@
+# 下载网址
+https://github.com/ServiceStack/redis-windows
+
+# 修改配置文件 redis.windows.conf
+# 添加两项配置
+requirepass liuheng
+maxheap 1024000000
+
+# 启动服务
+F:\>cd F:\redis64-2.8.2101
+F:\redis64-2.8.2101>redis-server.exe redis.windows.conf
+
+# 连接数据库
+F:\>cd F:\redis64-2.8.2101
+
+F:\redis64-2.8.2101>redis-cli.exe
+127.0.0.1:6379>
+
+# 测试连接
+127.0.0.1:6379> ping
+(error) NOAUTH Authentication required.
+
+# 密码认证
+127.0.0.1:6379> auth 'liuheng'
+OK
+127.0.0.1:6379> ping
+PONG
+127.0.0.1:6379>
+
