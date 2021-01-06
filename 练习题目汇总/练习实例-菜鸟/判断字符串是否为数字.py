@@ -18,6 +18,49 @@ unicodedata 模块
 unicodedata.numeric(chr[, default])
     返回分配给字符 chr 的数值作为浮点数。 如果没有定义这样的值，则返回 default ，如果没有给出，则 ValueError 被引发。
 
+str 类型特有方法：
+
+str.isdigit()：检测字符串是否只由数字组成
+返回值：
+    如果字符串只包含数字则返回 True 否则返回 False。
+
+str1 = "123456";
+print (str1.isdigit())  // True
+
+str1 = "Runoob example....wow!!!"
+print (str1.isdigit())  // False
+
+isnumeric() 方法检测字符串是否只由数字组成，数字可以是： Unicode 数字，全角数字（双字节），罗马数字，汉字数字。
+
+指数类似 `²` 与分数类似 `½` 也属于数字。
+# s = '½'
+s = '\u00BD'
+
+返回值：
+    如果字符串中只包含数字字符，则返回 True，否则返回 False
+
+#s = '²3455'
+s = '\u00B23455'
+print(s.isnumeric())
+# s = '½'
+s = '\u00BD'
+print(s.isnumeric())
+
+a = "\u0030" #unicode for 0
+print(a.isnumeric())
+
+b = "\u00B2" #unicode for ²
+print(b.isnumeric())
+
+c = "10km2"
+print(c.isnumeric())
+
+例输出结果如下：
+True
+True
+True
+True
+False
 '''
 
 
