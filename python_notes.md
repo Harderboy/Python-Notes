@@ -1570,7 +1570,23 @@ src=".*?"
 
 ### day_20210104
 
-- python 文件开头 `#coding=utf-8`
+- python 文件开头  
+
+  ```bash
+  <!-- linux中 -->
+  #!/usr/bin/python
+  # -*- coding: UTF-8 -*-
+
+  <!-- windows -->
+  # coding=utf-8
+  # -*- coding: UTF-8 -*-
+
+  <!-- python3版本 -->
+  #!/usr/bin/python3
+  ```
+
+  - 注意转换不同系统平台之间的换行字符，尤其涉及到（shell）
+  - 保持一种好的习惯
 
 - 注意 Django 中这几种写法（python3 固定格式）
   `from .models import Grades, Students`  
@@ -1614,7 +1630,7 @@ src=".*?"
 - 函数嵌套总结
 
 - python 继承父类后，可以在子类中定义其自身的方法
-  - 重新理解继承、多态的概念
+  - 重新理解封装、继承、多态的概念
   - 多做题，多敲代码，多看代码
 
 - Django Nginx+uwsgi 后续项目部署再进行学习
@@ -1690,9 +1706,45 @@ src=".*?"
 
 ### day_20210106
 
-- json数据用双引号，字符串数据用单引号
+- json 数据用双引号，字符串数据用单引号
 
-- 集合是通过哈希表实现的，所以添加，删除，查找的时间复杂度都是O(1)其实不太准确。
+- 集合是通过哈希表实现的，所以添加，删除，查找的时间复杂度都是 O(1) 其实不太准确。
   - 正确的复杂度如何待思考总结
 
 - 类属性、成员属性、成员方法、成员变量等名词整理
+
+- try 和 except 使用场景待总结
+  - 自定义异常
+  - 常见的异常类型总结
+  - 清理行为
+
+- 不同数值类型总结比较
+
+- 养成看官方文档的好习惯
+
+- 多问清需求
+
+- 个人优点：追求完美，代码风格简介，无错误（ Python 代码风格的检查工具）
+
+Python变量命名规则：
+
+- 变量名只能包含字母、数字和下划线。变量名可以字母或下划线开头，但不能以数字开头，例如，可将变量命名为 message_1，但不能将其命名为 1_message。
+- 变量名不能包含空格，但可使用下划线来分隔其中的单词。例如，变量名 greeting_message 可行，但变量名 greeting message 会引发错误。
+- 不要将 Python 关键字和函数名用作变量名，即不要使用 Python 保留用于特殊用途的单词，如 print。
+- 变量名应既简短又具有描述性。例如，name 比 n 好，student_name 比 s_n 好，name_length 比 length_of_persons_name 好。
+- 慎用小写字母 l 和大写字母 O，因给他们可能被人错看成数字 1 和 0。
+
+  注意：应使用小写的 Python 变量名。在变量名中使用大写字母虽然不会导致错误，但避免使用大写字母是个不错的主意。
+
+Python关键字
+
+```python
+>>> keyword.kwlist 
+['False', 'None', 'True', 'and', 'as', 'assert', 'async', 'await', 'break', 'class', 'continue', 'def', 
+'del', 'elif', 'else', 'except', 'finally', 'for', 'from', 'global', 'if', 'import', 'in', 'is', 'lambda', 'nonlocal', 'not', 'or', 'pass', 'raise', 'return', 'try', 'while', 'with', 'yield']
+```
+
+- 基础知识牢固
+  - Python列表脚本操作符：列表对 `+` 和 `*` 的操作符与字符串相似。`+` 号用于组合列表，`*` 号用于重复列表。
+
+- break 结束 while 循环

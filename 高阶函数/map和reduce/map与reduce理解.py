@@ -44,11 +44,18 @@ print(list(res))
 
 # 将整数元素的序列，转为字符串型
 # [1,2,3,4]—>["1","2","3","4"]
-l = map(str, [1, 2, 3, 4])
-print(list(l))
+# str表示函数str()
+it = map(str, [1, 2, 3, 4])
+print(it)
+print(list(it))
+
+
 '''
 reduce() 函数会对参数序列中元素进行累积。
-注意：Python3.x reduce() 已经被移到 functools 模块里，如果我们要使用，需要引入 functools 模块来调用 reduce() 函数：
+注意：Python3.x reduce() 已经被移到 functools 模块里。
+如果我们要使用，需要引入 functools 模块来调用 reduce()函数：
+from functools import reduce
+
 reduce() 函数语法：
     reduce(function, iterable[, initializer])
 
@@ -60,10 +67,10 @@ reduce() 函数语法：
     返回函数计算结果。
 
 功能
-    一个函数作用在序列上，这个函数必须接受两个参数，reduce把结果继续和序列的写一个元素累积运算
+    一个函数作用在序列上，这个函数必须接受两个参数，reduce把结果继续和序列的下一个元素累积运算
 
 实例
-    reduce(f,[a,b,c,c])
+    reduce(f,[a,b,c,d])
     f(f(f(a,b),c),d)
 '''
 
