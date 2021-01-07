@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>表格</title>
+		<style type="text/css">
+			.d {
+				width: 300px;
+				height: 90px;
+				/* 设置边框间距 */
+				border-spacing: 5px;
+			}
+
+			.d td {
+				border-top: solid 1px;
+				border-bottom: solid 1px;
+				border-left: solid 1px;
+			}
+			.d th {
+				border-top: double 6px red;
+				border-bottom: solid 3px;
+				border-left: solid 1px;
+			}
+
+			.a {
+				width: 300px;
+				height: 90px;
+				/*  */
+				border-spacing: 0;
+			}
+
+			.a td {
+				/* 只设置下边框 */
+				border-bottom: solid 1px;
+			}
+		</style>
+	</head>
+	<body>
+		<table border="1" cellspacing="0" cellpadding="5" style="caption-side: bottom;border-spacing: 10px;empty-cells: hide;">
+			<thead>
+				<tr>
+					<th>Header1</th>
+					<th>Header2</th>
+					<th>Header3</th>
+				</tr>
+			</thead>
+			<tfoot>
+				表格
+			</tfoot>
+			<tbody>
+				<tr>
+					<td>Data1</td>
+					<td>Data2</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>Data4</td>
+					<td>Data5</td>
+					<td>Data6</td>
+				</tr>
+			</tbody>
+		</table>
+
+		<table class="d">
+			<tr>
+				<th>Header1</th>
+				<th>Header2</th>
+				<th>Header2</th>
+			</tr>
+			<tr>
+				<td>Data</td>
+				<td>Data</td>
+				<td>Data</td>
+			</tr>
+			<tr>
+				<td>Data</td>
+				<td>Data</td>
+				<td>Data</td>
+			</tr>
+			<tr>
+				<td>Data</td>
+				<td>Data</td>
+				<td>Data</td>
+			</tr>
+		</table>
+
+		<table class="a">
+			<tr>
+				<th></th>
+				<th></th>
+				<th></th>
+			</tr>
+			<tr>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td></td>
+				<td></td>
+			</tr>
+		</table>
+	</body>
+</html>
