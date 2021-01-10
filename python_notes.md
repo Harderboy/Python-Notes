@@ -1752,4 +1752,82 @@ Python关键字
 ### day_20210107
 
 - [CSS基础：块元素、内联元素、内联块元素](https://www.jianshu.com/p/1cf4e5d9ca2c)
-- css 浮动元素待继续理解
+- css 浮动元素待继续理解以及清除浮动的方法（根据使用场景总结）
+
+### day_20210108
+
+**创建一个迭代器**
+把一个类作为一个迭代器使用需要在类中实现两个方法 `__iter__()` 与 `__next__()` 。
+
+- `__iter__()` 方法返回一个特殊的迭代器对象， 这个迭代器对象实现了 `__next__()` 方法并通过 StopIteration 异常标识迭代的完成。
+- `__next__()` 方法（Python 2 里是 next()）会返回下一个迭代器对象。
+
+```python
+class MyNumbers:
+  def __iter__(self):
+    self.a = 1
+    return self
+ 
+  def __next__(self):
+    x = self.a
+    self.a += 1
+    return x
+ 
+myclass = MyNumbers()
+myiter = iter(myclass)
+ 
+print(next(myiter))
+print(next(myiter))
+print(next(myiter))
+print(next(myiter))
+print(next(myiter))
+```
+
+**StopIteration**
+StopIteration 异常用于标识迭代的完成，防止出现无限循环的情况，在 `__next__()` 方法中我们可以设置在完成指定循环次数后触发 StopIteration 异常来结束迭代。
+
+在 20 次迭代后停止执行：
+
+```python
+class MyNumbers:
+    def __iter__(self):
+        self.a = 1
+        return self
+
+    def __next__(self):
+        if self.a <= 20:
+            x = self.a
+            self.a += 1
+            return x
+        else:
+            raise StopIteration
+
+
+myclass = MyNumbers()
+myiter = iter(myclass)
+
+for x in myiter:
+    print(x)
+```
+
+**iter() 函数用来生成迭代器**
+语法：`iter(object[, sentinel])`
+参数:
+
+- object -- 支持迭代的对象。
+- sentinel -- 如果传递了第二个参数，则参数 object 必须是一个可调用的对象（如，函数），此时，iter 创建了一个迭代器对象，每次调用这个迭代器对象的 `__next__()` 方法时，都会调用 object。
+
+返回值
+
+- 迭代器对象。
+
+**生成器**
+在 Python 中，使用了 yield 的函数被称为生成器（generator）。
+
+- 跟普通函数不同的是，生成器是一个返回迭代器的函数，只能用于迭代操作，更简单点理解生成器就是一个迭代器。
+
+- 在调用生成器运行的过程中，每次遇到 yield 时函数会暂停并保存当前所有的运行信息，返回 yield 的值, 并在下一次执行 next() 方法时从当前位置继续运行。
+
+- 调用一个生成器函数，返回的是一个迭代器对象。
+
+- 详情见协程部分

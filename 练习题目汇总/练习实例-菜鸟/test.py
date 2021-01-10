@@ -1,5 +1,21 @@
-import unicodedata
-print(unicodedata.numeric("四"))
+class MyNumbers:
+    def __iter__(self):
+        self.a = 1
+        return self
 
-list1 = [11, 5, 17, 18, 23]
-print("sum函数求得的列表元素之和为：", sum(list1))
+    def __next__(self):
+        if self.a <= 20:
+            x = self.a
+            self.a += 1
+            return x
+        else:
+            raise StopIteration
+
+
+myclass = MyNumbers()
+myiter = iter(myclass)
+print(myiter)
+print(type(myiter))
+
+for x in myiter:
+    print(x)
