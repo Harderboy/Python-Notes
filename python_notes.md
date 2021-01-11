@@ -1831,3 +1831,91 @@ for x in myiter:
 - 调用一个生成器函数，返回的是一个迭代器对象。
 
 - 详情见协程部分
+
+### day_20210111
+
+- 文档流，标准流
+- 定位练习
+- 下拉框用定位实现
+
+- [ASCII，Unicode 和 UTF-8](http://www.ruanyifeng.com/blog/2007/10/ascii_unicode_and_utf-8.html)
+
+- 字符串、字节串，参考：[Python 字符串和字符编码 —— Python 3 中，chr() 和 ord() 默认支持unicode](http://php-note.com/article/368.html)
+
+Python转义字符
+在需要在字符中使用特殊字符时，python 用反斜杠 \ 转义字符。如
+
+`\`(在行尾时)：续行符
+
+```bash
+>>> print("line1 \
+... line2 \
+... line3")
+line1 line2 line3
+>>> 
+```
+
+`\r`：回车，将 \r 后面的内容移到字符串开头，并逐一替换开头部分的字符，直至将 \r 后面的内容完全替换完成。
+
+```bash
+>>> print("Hello\rWorld!")
+World!
+>>> print('google runoob taobao\r123456')
+123456 runoob taobao
+```
+
+理解一下写法：
+
+```python
+class Solution:
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
+```
+
+- python的算法复杂度如何计算
+
+for 循环中的 else 语句
+
+用 break 关键字终止当前循环就不会执行当前的 else 语句，而使用 continue 关键字快速进入下一论循环，或者没有使用其他关键字，循环的正常结束后，就会触发 else 语句。
+
+触发 else
+
+- 正常结束的循环
+
+  ```python
+  list = [1,2,3,4,5]
+  for x in list:
+      print(x)
+  else:
+      print("else")
+  ```
+
+- 使用 continue 关键字
+
+  ```python
+  list = [1, 2, 3, 4, 5]
+  for x in list:
+      if x == 2:
+          continue
+      print(x)
+  else:
+      print("else")
+  ```
+
+不触发 else
+
+```python
+list = [1,2,3,4,5]
+for x in list:
+    print(x)
+    break
+else:
+    print("else")
+```
+
+**总结**
+for else语句可以总结成以下话：  
+
+如果我依次做完了所有的事情(for正常结束)，我就去做其他事(执行else)，若做到一半就停下来不做了（中途遇到break），我就不去做其他事了(不执行else)。
+
+1. 只有循环完所有次数，才会执行 else。
+2. break 可以阻止 else 语句块的执行。
