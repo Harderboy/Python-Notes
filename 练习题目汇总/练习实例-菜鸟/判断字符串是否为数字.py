@@ -20,7 +20,7 @@ unicodedata.numeric(chr[, default])
 
 str 类型特有方法：
 
-str.isdigit()：检测字符串是否只由数字组成
+str.isdigit()：检测字符串是否只由数字组成（不包括小数点、负数）
 返回值：
     如果字符串只包含数字则返回 True 否则返回 False。
 

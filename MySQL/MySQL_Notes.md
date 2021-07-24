@@ -9,6 +9,22 @@
 [MySQL 规约](https://github.com/bingoohuang/blog/issues/68)  
 [MySQL 中的数据类型](https://wiki.jikexueyuan.com/project/mysql-21-minutes/data.html)
 
+## 基本语法
+
+LIMIT 子句可以被用于强制 SELECT 语句返回指定的记录数。LIMIT 接受一个或两个数字参数。参数必须是一个整数常量。如果给定两个参数，第一个参数指定第一个返回记录行的偏移量，第二个参数指定返回记录行的最大数目。初始记录行的偏移量是 0(而不是 1)： 为了与 PostgreSQL 兼容，MySQL 也支持句法： LIMIT # OFFSET #。
+
+```bash
+mysql> SELECT * FROM table LIMIT 5,10; // 检索记录行 6-15  
+  
+//为了检索从某一个偏移量到记录集的结束所有的记录行，可以指定第二个参数为 -1：   
+mysql> SELECT * FROM table LIMIT 95,-1; // 检索记录行 96-last.  
+  
+//如果只给定一个参数，它表示返回最大的记录行数目：   
+mysql> SELECT * FROM table LIMIT 5; //检索前 5 个记录行  
+  
+//换句话说，LIMIT n 等价于 LIMIT 0,n。
+```
+
 ## SQL INSERT INTO 语句
 
 INSERT INTO 语句可以有两种编写形式。
@@ -20,7 +36,9 @@ INSERT INTO 语句可以有两种编写形式。
     VALUES (value1,value2,value3,...);
     ```
 
-    注意：没有指定要插入数据的列名的形式需要列出插入行的每一列数据（是否包含id字段？）。
+    注意：没有指定要插入数据的列名的形式需要列出插入行的每一列数据,insert 这种简写的方式虽然非常简单,但是 Values 后面的值必须和表中的类顺序对应,且类型要保持一致，即使表中某一个列不需要值也必须赋值为 null，比如我们的主键 id 设置的是递增实际上是不用设置值的,但是使用这种方式必须赋值为 null
+
+    参考：[MySQL中插入语句(Insert)的几种使用方式](https://blog.csdn.net/qq_40194399/article/details/102462861)
 
 - 第二种形式需要指定列名及被插入的值（无需指定 id 字段，id 字段会自动更新）：
 
@@ -37,6 +55,10 @@ INSERT INTO 语句可以有两种编写形式。
 
 ## 关键字
 
+嵌套子查询 in 的用法
+
+`update salaries set salary=1.1*salary where salaries.to_date='9999-01-01' and salaries.emp_no in (select emp_no from emp_bonus);`
+
 ## 数据类型
 
 在这些插入的数据中有些数据类型需要加引号，具体总结如下
@@ -47,6 +69,8 @@ INSERT INTO 语句可以有两种编写形式。
     如 TINYINT、SMALLINT、MEDIUMINT、INT、FLOAT、DOUBLE、DECIMAL 等
 
 ## 联表查询（左右连接、UNION 等）
+
+[SQL中条件放在on后与where后的区别](https://www.cnblogs.com/itjeff/p/3524236.html)
 
 ## 索引
 

@@ -1,25 +1,3 @@
-# 给定一个字符串，然后判断该字符串的长度。
-
-# 方法1：使用内置方法 len()
-str1 = "runoob"
-print(len(str1))
-
-
-# 方法2：循环、切片
-def findLen(str):
-    counter = 0
-    while str[counter:]:
-        counter += 1
-    return counter
-
-
-str2 = "runoob"
-print(str2[5:])  # b
-print(str2[6:])  # （空）
-print(str2[7:])  # （空）
-print(type(str2[6:]))   # <class 'str'>
-print(findLen(str2))
-
 '''
 知识总结：
   字符串[开始索引：结束索引：步长]
@@ -59,17 +37,3 @@ i=num_str[-1::-1]
 num_str[::-1]
 print(i)
 '''
-
-# 以及
-def length(src):
-    # 字符串长度
-    count = 0
-    all_str = src[count:]
-
-    for x in all_str:
-        count += 1
-
-    print("字符串长度为: %s" % count)
-
-src = "Runoob"
-length(src)

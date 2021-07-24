@@ -7,4 +7,5 @@ mylist = list(
         repeat=3))
 
 # print(mylist)
+
 print(len(mylist))

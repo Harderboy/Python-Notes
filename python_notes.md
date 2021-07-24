@@ -480,6 +480,8 @@
       def fun4(name, *arr):
         print(name)
         print(type(arr))
+        # 输出元组
+        print(arr)
         for x in arr:
           print(x)
 
@@ -508,6 +510,7 @@
           "打印任何传入的参数"
           print ("输出: ")
           print (arg1)
+          # 输出字典
           print (vardict)
 
         # 调用printinfo 函数
@@ -1054,18 +1057,21 @@
       per.setAge(18)
       print(per.getAge())
 
+      class Person(object):
+          def __init__(self, age):
+              # 限制访问
+              self.__age = age
+          #使用@property（类似装饰器）
 
-      #使用@property（类似装饰器）
-
-      # 方法名更改为受限制的变量去掉双下划线(__age)
-      @property
-      def age(self):
-          return self.__age
-      @age.setter # 去掉下划线.setter
-      def age(self, age):
-          if age < 0:
-              age = 0
-          self.__age = age
+          # 方法名更改为受限制的变量去掉双下划线(__age)
+          @property
+          def age(self):
+              return self.__age
+          @age.setter # 去掉下划线.setter
+          def age(self, age):
+              if age < 0:
+                  age = 0
+              self.__age = age
 
       # 等效为以下方法
       # per.setAge(18)
@@ -1145,6 +1151,7 @@
   ```
 
 - 继承涉及的调用父类构造方法、改写父类方法，下边的代码帮助理解得更清晰
+  - 当继承的多个父类有同名方法，子类调用时默认调用的是在括号中排前（继承的顺序）的父类的方法
 
   ```python
   #!/usr/bin/python3
@@ -1169,6 +1176,12 @@
       grade = ''
       def __init__(self,n,a,w,g):
           #调用父类的构函
+          # 调用父类的__init__方法1(python2)
+          #Cat.__init__(self,name)
+          # 调用父类的__init__方法2
+          #super(Bosi,self).__init__(name)
+          # 调用父类的__init__方法3
+          #super().__init__(name)
           people.__init__(self,n,a,w)
           self.grade = g
       #覆写父类的方法 方法重写
@@ -1193,7 +1206,98 @@
           speaker.__init__(self,n,t)
   
   test = sample("Tim",25,80,4,"Python")
-  test.speak()   #方法名同，默认调用的是在括号中排前地父类的方法
+  test.speak()   #方法名同，默认调用的是在括号中排前的父类的方法
+  ```
+
+其他例子
+
+- 子类构造方法中缺少父类构造方法中的参数，但是却具有该属性以及选择性传参（某个参数）给父类构造方法
+
+  ```python
+  class Person(object):
+    """人类"""
+    def __init__(self, name, age=0, sex=''):
+        self.name = name
+        self.age = age
+        self.sex = sex
+
+    def eat(self):
+        print('人在吃饭')
+
+
+  class Staff(Person):
+      # init方法的参数：保证在创建对象的时候就可以给某些属性赋值
+      def __init__(self, name='', age=0, salary=0):
+          super().__init__(name, age)
+          self.salary = salary
+
+      def eat(self):
+          print('员工在吃饭')
+          # print("测试sex:", self.sex)
+
+
+  if __name__ == '__main__':
+      p1 = Person('李四', sex='女')
+      # p1.eat()
+
+      s1 = Staff(age=18)
+      # s1.sex = '男'
+      print(s1.name)
+      print(s1.age)
+      print(s1.sex)
+      s1.salary = 10000
+      print(s1.salary)
+      s1.eat()
+  ```
+
+- 以及覆盖父类方法，子类方法参数不同于父类
+
+  ```python
+  class Animal:
+    def eat(self):
+        print("I like eat anything")
+
+    def sleep(self):
+        print("I need sleep for 15 hours a day")
+
+  class Cat(Animal):
+      def eat(self, food):
+          print("I am a cat, and i just like eat", food)
+
+  class Dog(Animal):
+      def eat(self, food):
+          print("I am a dog, and i just like eat", food)
+
+  cat = Cat()
+  cat.eat("fish")
+  cat.sleep()
+
+  dog = Dog()
+  dog.eat("bone")
+  dog.sleep()
+  ```
+
+- 遇到的问题，以下代码跑不通，已通过，详见下面的注释
+
+  ```python
+  class Base:
+      def test(self, n):
+          if n <= 1:
+              print(n)
+          else:
+              print(n)
+              # 错误代码：self.test(n-1)
+              Base.test(self, n-1)
+
+  class MyBase(Base):
+      def test(self, n, m):
+          Base.test(self, n)
+          print("m:", m)
+          print("ok")
+
+  if __name__ == "__main__":
+      tb = MyBase()
+      tb.test(3, 5)
   ```
 
 ### day_20201119
@@ -1919,3 +2023,43 @@ for else语句可以总结成以下话：
 
 1. 只有循环完所有次数，才会执行 else。
 2. break 可以阻止 else 语句块的执行。
+
+### day_20210112
+
+- 做一个基本的网页布局，练习
+- [css学习手册](https://www.runoob.com/cssref/css-reference.html)
+  - 照着案例敲一边就差不多学会了
+  - 分别敲下拉框、导航栏、页面布局（总结）
+
+### day_20210113
+
+- 每次重启 linux，都需修改域名解析配置文件，待解决
+  - 应该是跟域名解析服务器动静态分配相关？
+- 进阶(回文数):
+  - 你能不将整数转为字符串来解决这个问题吗？
+
+### day_20210130
+
+- 强类型和弱类型、动态和静态语言
+
+  ![语言类型-强弱_动静](./images/语言类型-强弱_动静.png)
+
+  参考链接：  
+  [弱类型、强类型、动态类型、静态类型语言的区别是什么？——夏雨婷](https://www.zhihu.com/question/19918532)
+  [强类型、弱类型、静态类型、动态类型语言](https://juejin.cn/post/6844903933463232519)  
+  [通俗的方式理解动态类型，静态类型；强类型，弱类型](https://segmentfault.com/a/1190000012372372)
+
+### day_20210201
+
+在python中继承中的一些特点：
+
+1. 在继承中基类的构造（`__init__()` 方法）不会被自动调用，它需要在其派生类的构造中亲自专门调用。（**待理解**）
+
+2. 在调用基类的方法时，需要加上基类的类名前缀，且需要带上self参数变量。区别于在类中调用普通函数时并不需要带上self参数（**此点存疑**）
+
+3. Python总是首先查找对应类型的方法，如果它不能在派生类中找到对应的方法，它才开始到基类中逐个查找。（先在本类中查找调用的方法，找不到才去基类中找）。
+
+参考：
+[python面向对象编程全解](https://zhuanlan.zhihu.com/p/36810672)  
+[Python 10-3——给子类定义属性和方法](https://www.jianshu.com/p/afd8aab8985c)  
+[一篇文章搞懂Python中的面向对象编程](https://yangcongchufang.com/%E9%AB%98%E7%BA%A7python%E7%BC%96%E7%A8%8B%E5%9F%BA%E7%A1%80/python-object-class.html)
